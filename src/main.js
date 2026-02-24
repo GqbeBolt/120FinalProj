@@ -1,0 +1,30 @@
+/*
+Name: Gabriel Rybolt
+Game Name: 
+Time Spent: 
+Citations:  
+Creative Tilt: 
+    
+*/
+let config = {
+    type: Phaser.AUTO,
+    width: 900,
+    height: 575,
+    pixelArt: true,
+    zoom: 1,
+    physics: {
+        default: "arcade",
+        arcade: {
+            debug: false
+        }
+    },
+    fps: 60,
+    scene: [ Load, Menu, Play ],
+};
+
+let game = new Phaser.Game(config);
+let {width, height} = game.config;
+
+let redHex = 0xDC143C;
+let blackHex = 0x111111;
+
