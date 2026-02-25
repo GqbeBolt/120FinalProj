@@ -7,6 +7,8 @@ class Menu extends Phaser.Scene {
 
         this.cameras.main.setBackgroundColor(blackHex);
 
+        this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+
         // display menu text
         
         this.startText = this.add.bitmapText(width/2, height/2, "typedFont", "START", 36).setOrigin(0.5).setInteractive({
