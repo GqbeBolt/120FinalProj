@@ -19,7 +19,7 @@ let config = {
         }
     },
     fps: 60,
-    scene: [ Load, Menu, Play ],
+    scene: [ Load, Menu, Play, BluePrincePuzzle ],
 };
 
 let game = new Phaser.Game(config);
