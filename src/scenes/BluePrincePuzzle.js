@@ -61,7 +61,7 @@ class BluePrincePuzzle extends Phaser.Scene {
         this.add.sprite(width/2, 25, "colorCircle").setOrigin(0.5, 0);
         this.add.sprite(width/2, 25, "centerSymbol").setOrigin(0.5, 0);
 
-        this.colorRing = this.add.sprite(width/2, 50, `${this.currColor}-ring`);
+        this.colorRing = this.add.sprite(width/2, 63, `${this.colorArr[this.currColor]}-ring`).setOrigin(0.5, 0);
 
         this.allRays = [];
         for (let i=0;i<8;i++) {
