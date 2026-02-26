@@ -8,8 +8,8 @@ Creative Tilt:
 */
 let config = {
     type: Phaser.AUTO,
-    width: 900,
-    height: 575,
+    width: 960,
+    height: 600,
     pixelArt: true,
     zoom: 1,
     physics: {
