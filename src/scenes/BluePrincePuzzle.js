@@ -33,7 +33,7 @@ class BluePrincePuzzle extends Phaser.Scene {
                 motesOn: [false, true, false, true, false, false, false, false, false, false, false, false, false, true, false, true]
             }],
             ["trains", {
-                raysOn: [true, true, true, true, true, true, true, true],
+                raysOn: [false, true, false, false, true, false, false, true],
                 motesOn: [true, false, false, false, true, false, true, false, false, false, true, false, true, false, false, false]
             }],
             ["aviation", {
@@ -57,22 +57,27 @@ class BluePrincePuzzle extends Phaser.Scene {
 
         this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
 
-        this.add.sprite(width/2, 25, "outerCircle").setOrigin(0.5, 0);
-        //this.colorRing = this.add.sprite(width/2, 50, `${this.currColor}-ring`);
+        this.outerCircle = this.add.sprite(width/2, 162, "outerCircle").setOrigin(0.5);
+        this.add.sprite(width/2, 25, "colorCircle").setOrigin(0.5, 0);
+        this.add.sprite(width/2, 25, "centerSymbol").setOrigin(0.5, 0);
+
+        this.colorRing = this.add.sprite(width/2, 50, `${this.currColor}-ring`);
 
         this.allRays = [];
-        for (let i=0;i<7;i++) {
-            this.allRays[i] = this.add.sprite(width/2, height/2, `${this.weatherArr[this.currWeather]}-ray`).setOrigin(0.5, 1);
+        for (let i=0;i<8;i++) {
+            this.allRays[i] = this.add.sprite(width/2, 84, `${this.weatherArr[this.currWeather]}-ray`).setOrigin(0.5, 0);
+            Phaser.Actions.RotateAround([this.allRays[i]], {x: width/2, y: 162}, (Math.PI*i)/4);
             this.allRays[i].setAngle(45*i);
         }
 
         this.allMotes = [];
-        for (let i=0;i<15;i++) {
-            this.allMotes[i] = this.add.sprite(width/2 + Math.sin((i * Math.PI) / 8), height/2 + Math.cos((i * Math.PI) / 8), `${this.currSociety}-mote`).setOrigin(0);
-            this.allMotes[i].setAngle(45*i);
+        for (let i=0;i<16;i++) {
+            this.allMotes[i] = this.add.sprite(width/2, 95, `${this.societyArr[this.currSociety]}-mote`).setOrigin(0.5, 0);
+            Phaser.Actions.RotateAround([this.allMotes[i]], {x: width/2, y: 162}, (Math.PI*i)/8);
+            this.allMotes[i].setAngle(22.5*i);
         }
 
-        this.updateRaysAndMotes();  
+        this.updateRayAndMoteLocation();  
 
         // buttons
         this.colorText = this.add.bitmapText(width/2, height/2+90, "typedFont", "Color", 24).setOrigin(0.5).setInteractive({
@@ -83,7 +88,7 @@ class BluePrincePuzzle extends Phaser.Scene {
         .on("pointerdown", () => {
             this.currColor = (this.currColor+1) % this.colorArr.length;
             console.log(this.colorArr[this.currColor]);
-            this.buttonCooldown();
+            this.updateSigil(this.colorText);
         })
         .on("pointerover", () => {this.colorText.setTint(redHex)})
         .on("pointerout", () => {this.colorText.setTint(0xFFFFFF)});
@@ -96,7 +101,7 @@ class BluePrincePuzzle extends Phaser.Scene {
         .on("pointerdown", () => {
             this.currTravel = (this.currTravel+1) % this.travelArr.length;
             console.log(this.travelArr[this.currTravel]);
-            this.buttonCooldown();
+            this.updateSigil(this.travelText);
         })
         .on("pointerover", () => {this.travelText.setTint(redHex)})
         .on("pointerout", () => {this.travelText.setTint(0xFFFFFF)});
@@ -109,7 +114,7 @@ class BluePrincePuzzle extends Phaser.Scene {
         .on("pointerdown", () => {
             this.currWeather = (this.currWeather+1) % this.weatherArr.length;
             console.log(this.weatherArr[this.currWeather]);
-            this.buttonCooldown();
+            this.updateSigil(this.weatherText);
         })
         .on("pointerover", () => {this.weatherText.setTint(redHex)})
         .on("pointerout", () => {this.weatherText.setTint(0xFFFFFF)});
@@ -122,32 +127,90 @@ class BluePrincePuzzle extends Phaser.Scene {
         .on("pointerdown", () => {
             this.currSociety = (this.currSociety+1) % this.societyArr.length;
             console.log(this.societyArr[this.currSociety]);
-            this.buttonCooldown();
+            this.updateSigil(this.societyText);
         })
         .on("pointerover", () => {this.societyText.setTint(redHex)})
         .on("pointerout", () => {this.societyText.setTint(0xFFFFFF)});
 
         this.buttons = this.add.group([this.colorText, this.travelText, this.weatherText, this.societyText]);
+
+        
+
     }
 
-    updateRaysAndMotes() {
+    updateRayAndMoteLocation() {
         let currRaysOn = this.rayAndMoteLocations.get(this.travelArr[this.currTravel]).raysOn;
-        for (let i=0;i<7;i++) {
+        for (let i=0;i<8;i++) {
             this.allRays[i].setVisible(currRaysOn[i]);
         }
         
         let currMotesOn = this.rayAndMoteLocations.get(this.travelArr[this.currTravel]).motesOn;
-        for (let i=0;i<15;i++) {
+        for (let i=0;i<16;i++) {
             this.allMotes[i].setVisible(currMotesOn[i]);
         }
     }
 
-    buttonCooldown() {
+    updateSigil(button) {
+        // turn off all buttons
         this.buttons.children.each( (button)=> {
             button.disableInteractive();
             button.setTint(0xFFFFFF);
-        })
+        });
 
+        // update the sigil sprites / locations
+        switch (button) {
+            case this.colorText:
+                this.colorRing.setVisible(false);
+                this.colorRing.setTexture(`${this.colorArr[this.currColor]}-ring`);
+                this.time.delayedCall(this.buttonCooldownTime, () => {
+                    this.colorRing.setVisible(true);
+                }, null, this);
+                break;
+
+            case this.travelText:
+                for (let i=0;i<8;i++) { 
+                    this.allRays[i].setVisible(false);
+                }
+                for (let i=0;i<16;i++) { 
+                    this.allMotes[i].setVisible(false);
+                }
+                this.time.delayedCall(this.buttonCooldownTime, () => {
+                    this.updateRayAndMoteLocation();
+                }, null, this);
+                break;
+
+            case this.weatherText:
+                for (let i=0;i<8;i++) { 
+                    this.allRays[i].setVisible(false); 
+                    this.allRays[i].setTexture(`${this.weatherArr[this.currWeather]}-ray`);
+                }
+                this.time.delayedCall(this.buttonCooldownTime, () => {
+                    this.updateRayAndMoteLocation(); 
+                }, null, this);
+                break;
+
+            case this.societyText:
+                for (let i=0;i<16;i++) { 
+                    this.allMotes[i].setVisible(false);
+                    this.allMotes[i].setTexture(`${this.societyArr[this.currSociety]}-mote`);
+                }
+                this.time.delayedCall(this.buttonCooldownTime, () => {
+                    this.updateRayAndMoteLocation(); 
+                }, null, this);
+                break;
+        }
+
+        // play outer ring spin anim
+        this.outerSpin = this.tweens.add({
+            targets: this.outerCircle,
+            rotation: `+=${0.5}`,
+            ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+            duration: this.buttonCooldownTime,
+            repeat: 0,         
+            yoyo: false,
+        }) 
+
+        // make buttons deactivated while changing
         this.time.delayedCall(this.buttonCooldownTime, () => {
             this.buttons.children.each( (button)=> {
                 button.setInteractive();
