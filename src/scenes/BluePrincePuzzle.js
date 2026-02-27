@@ -80,61 +80,61 @@ class BluePrincePuzzle extends Phaser.Scene {
         this.updateRayAndMoteLocation();  
 
         // buttons
-        this.colorText = this.add.bitmapText(width/2, height/2+90, "typedFont", "Color", 24).setOrigin(0.5).setInteractive({
-            hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-            hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-            useHandCursor: true
-        })
-        .on("pointerdown", () => {
-            this.currColor = (this.currColor+1) % this.colorArr.length;
-            console.log(this.colorArr[this.currColor]);
-            this.updateSigil(this.colorText);
-        })
-        .on("pointerover", () => {this.colorText.setTint(redHex)})
-        .on("pointerout", () => {this.colorText.setTint(0xFFFFFF)});
+        // this.colorText = this.add.bitmapText(width/2, height/2+90, "typedFont", "Color", 24).setOrigin(0.5).setInteractive({
+        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
+        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+        //     useHandCursor: true
+        // })
+        // .on("pointerdown", () => {
+        //     this.currColor = (this.currColor+1) % this.colorArr.length;
+        //     console.log(this.colorArr[this.currColor]);
+        //     this.updateSigil(this.colorText);
+        // })
+        // .on("pointerover", () => {this.colorText.setTint(redHex)})
+        // .on("pointerout", () => {this.colorText.setTint(0xFFFFFF)});
 
-        this.travelText = this.add.bitmapText(width/2, height/2+120, "typedFont", "Travel", 24).setOrigin(0.5).setInteractive({
-            hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-            hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-            useHandCursor: true
-        })
-        .on("pointerdown", () => {
-            this.currTravel = (this.currTravel+1) % this.travelArr.length;
-            console.log(this.travelArr[this.currTravel]);
-            this.updateSigil(this.travelText);
-        })
-        .on("pointerover", () => {this.travelText.setTint(redHex)})
-        .on("pointerout", () => {this.travelText.setTint(0xFFFFFF)});
+        // this.travelText = this.add.bitmapText(width/2, height/2+120, "typedFont", "Travel", 24).setOrigin(0.5).setInteractive({
+        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
+        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+        //     useHandCursor: true
+        // })
+        // .on("pointerdown", () => {
+        //     this.currTravel = (this.currTravel+1) % this.travelArr.length;
+        //     console.log(this.travelArr[this.currTravel]);
+        //     this.updateSigil(this.travelText);
+        // })
+        // .on("pointerover", () => {this.travelText.setTint(redHex)})
+        // .on("pointerout", () => {this.travelText.setTint(0xFFFFFF)});
 
-        this.weatherText = this.add.bitmapText(width/2, height/2+150, "typedFont", "Weather", 24).setOrigin(0.5).setInteractive({
-            hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-            hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-            useHandCursor: true
-        })
-        .on("pointerdown", () => {
-            this.currWeather = (this.currWeather+1) % this.weatherArr.length;
-            console.log(this.weatherArr[this.currWeather]);
-            this.updateSigil(this.weatherText);
-        })
-        .on("pointerover", () => {this.weatherText.setTint(redHex)})
-        .on("pointerout", () => {this.weatherText.setTint(0xFFFFFF)});
+        // this.weatherText = this.add.bitmapText(width/2, height/2+150, "typedFont", "Weather", 24).setOrigin(0.5).setInteractive({
+        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
+        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+        //     useHandCursor: true
+        // })
+        // .on("pointerdown", () => {
+        //     this.currWeather = (this.currWeather+1) % this.weatherArr.length;
+        //     console.log(this.weatherArr[this.currWeather]);
+        //     this.updateSigil(this.weatherText);
+        // })
+        // .on("pointerover", () => {this.weatherText.setTint(redHex)})
+        // .on("pointerout", () => {this.weatherText.setTint(0xFFFFFF)});
 
-        this.societyText = this.add.bitmapText(width/2, height/2+180, "typedFont", "Society", 24).setOrigin(0.5).setInteractive({
-            hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-            hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-            useHandCursor: true
-        })
-        .on("pointerdown", () => {
-            this.currSociety = (this.currSociety+1) % this.societyArr.length;
-            console.log(this.societyArr[this.currSociety]);
-            this.updateSigil(this.societyText);
-        })
-        .on("pointerover", () => {this.societyText.setTint(redHex)})
-        .on("pointerout", () => {this.societyText.setTint(0xFFFFFF)});
+        // this.societyText = this.add.bitmapText(width/2, height/2+180, "typedFont", "Society", 24).setOrigin(0.5).setInteractive({
+        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
+        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+        //     useHandCursor: true
+        // })
+        // .on("pointerdown", () => {
+        //     this.currSociety = (this.currSociety+1) % this.societyArr.length;
+        //     console.log(this.societyArr[this.currSociety]);
+        //     this.updateSigil(this.societyText);
+        // })
+        // .on("pointerover", () => {this.societyText.setTint(redHex)})
+        // .on("pointerout", () => {this.societyText.setTint(0xFFFFFF)});
 
-        this.buttons = this.add.group([this.colorText, this.travelText, this.weatherText, this.societyText]);
+        // this.buttons = this.add.group([this.colorText, this.travelText, this.weatherText, this.societyText]);
 
-        
+        this.add.image(width/2, 450, "gear");
 
     }
 
@@ -168,6 +168,9 @@ class BluePrincePuzzle extends Phaser.Scene {
                 break;
 
             case this.travelText:
+                this.colorRing.setVisible(false);
+                this.currColor = (this.currColor+3) % this.colorArr.length;
+                this.colorRing.setTexture(`${this.colorArr[this.currColor]}-ring`);
                 for (let i=0;i<8;i++) { 
                     this.allRays[i].setVisible(false);
                 }
@@ -176,16 +179,21 @@ class BluePrincePuzzle extends Phaser.Scene {
                 }
                 this.time.delayedCall(this.buttonCooldownTime, () => {
                     this.updateRayAndMoteLocation();
+                    this.colorRing.setVisible(true); 
                 }, null, this);
                 break;
 
             case this.weatherText:
+                this.colorRing.setVisible(false);
+                this.currColor = (this.currColor+3) % this.colorArr.length;
+                this.colorRing.setTexture(`${this.colorArr[this.currColor]}-ring`);
                 for (let i=0;i<8;i++) { 
                     this.allRays[i].setVisible(false); 
                     this.allRays[i].setTexture(`${this.weatherArr[this.currWeather]}-ray`);
                 }
                 this.time.delayedCall(this.buttonCooldownTime, () => {
-                    this.updateRayAndMoteLocation(); 
+                    this.updateRayAndMoteLocation();
+                    this.colorRing.setVisible(true); 
                 }, null, this);
                 break;
 

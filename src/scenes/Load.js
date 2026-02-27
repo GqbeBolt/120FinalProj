@@ -23,6 +23,7 @@ class Load extends Phaser.Scene {
         this.load.image("outerCircle", "OuterCircle.png");
         this.load.image("centerSymbol", "CenterSymbol.png");
         this.load.image("colorCircle", "ColorCircle.png");
+        this.load.image("gear", "gear.png");
 
         //color rings
         this.load.image("black-ring", "black-ring.png");
