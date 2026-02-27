@@ -54,6 +54,13 @@ class Load extends Phaser.Scene {
         this.load.image("spiritual-mote", "spiritual-mote.png");
         this.load.image("poetic-mote", "poetic-mote.png");
 
+        //spinners
+        this.load.image("blueButton", "BlueButton.png");
+        this.load.image("colorSpinner", "ColorSpinner.png");
+        this.load.image("moteSpinner", "MoteSpinner.png");
+        this.load.image("travelSpinner", "TravelSpinner.png");
+        this.load.image("raySpinner", "RaySpinner.png");
+
         // this.load.spritesheet("runner", "runner.png", {
         //     frameWidth: 30,
         //     frameHeight: 36

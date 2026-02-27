@@ -25,6 +25,8 @@ let config = {
 let game = new Phaser.Game(config);
 let {width, height} = game.config;
 
+let blueHex = 0x5fcde4;
 let redHex = 0xDC143C;
 let blackHex = 0x111111;
+
 

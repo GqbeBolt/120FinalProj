@@ -50,6 +50,13 @@ class BluePrincePuzzle extends Phaser.Scene {
             }]
         ]);
 
+        this.correct = {
+            color: "green",
+            travel: "trains",
+            weather: "snow",
+            society: "academic"
+        };
+
     }
 
     create() {
@@ -80,62 +87,70 @@ class BluePrincePuzzle extends Phaser.Scene {
         this.updateRayAndMoteLocation();  
 
         // buttons
-        // this.colorText = this.add.bitmapText(width/2, height/2+90, "typedFont", "Color", 24).setOrigin(0.5).setInteractive({
-        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-        //     useHandCursor: true
-        // })
-        // .on("pointerdown", () => {
-        //     this.currColor = (this.currColor+1) % this.colorArr.length;
-        //     console.log(this.colorArr[this.currColor]);
-        //     this.updateSigil(this.colorText);
-        // })
-        // .on("pointerover", () => {this.colorText.setTint(redHex)})
-        // .on("pointerout", () => {this.colorText.setTint(0xFFFFFF)});
+        this.colorButton = this.add.image(width/2, 450, "colorSpinner").setOrigin(0.5).setInteractive({
+            hitArea: new Phaser.Geom.Circle(119, 119, 119),
+            hitAreaCallback: Phaser.Geom.Circle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.currColor = (this.currColor+1) % this.colorArr.length;
+            console.log(this.colorArr[this.currColor]);
+            this.updateSigil(this.colorButton);
+        })
+        .on("pointerover", () => {this.colorButton.setTint(blueHex)})
+        .on("pointerout", () => {this.colorButton.setTint(0xFFFFFF)});
 
-        // this.travelText = this.add.bitmapText(width/2, height/2+120, "typedFont", "Travel", 24).setOrigin(0.5).setInteractive({
-        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-        //     useHandCursor: true
-        // })
-        // .on("pointerdown", () => {
-        //     this.currTravel = (this.currTravel+1) % this.travelArr.length;
-        //     console.log(this.travelArr[this.currTravel]);
-        //     this.updateSigil(this.travelText);
-        // })
-        // .on("pointerover", () => {this.travelText.setTint(redHex)})
-        // .on("pointerout", () => {this.travelText.setTint(0xFFFFFF)});
+        this.travelButton = this.add.image(width/2, 450, "travelSpinner").setOrigin(0.5).setInteractive({
+            hitArea: new Phaser.Geom.Circle(88, 88, 88),
+            hitAreaCallback: Phaser.Geom.Circle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.currTravel = (this.currTravel+1) % this.travelArr.length;
+            console.log(this.travelArr[this.currTravel]);
+            this.updateSigil(this.travelButton);
+        })
+        .on("pointerover", () => {this.travelButton.setTint(blueHex)})
+        .on("pointerout", () => {this.travelButton.setTint(0xFFFFFF)});
+        
+        this.weatherButton = this.add.image(width/2, 450, "raySpinner").setOrigin(0.5).setInteractive({
+            hitArea: new Phaser.Geom.Circle(51, 51, 51),
+            hitAreaCallback: Phaser.Geom.Circle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.currWeather = (this.currWeather+1) % this.weatherArr.length;
+            console.log(this.weatherArr[this.currWeather]);
+            this.updateSigil(this.weatherButton);
+        })
+        .on("pointerover", () => {this.weatherButton.setTint(blueHex)})
+        .on("pointerout", () => {this.weatherButton.setTint(0xFFFFFF)});
 
-        // this.weatherText = this.add.bitmapText(width/2, height/2+150, "typedFont", "Weather", 24).setOrigin(0.5).setInteractive({
-        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-        //     useHandCursor: true
-        // })
-        // .on("pointerdown", () => {
-        //     this.currWeather = (this.currWeather+1) % this.weatherArr.length;
-        //     console.log(this.weatherArr[this.currWeather]);
-        //     this.updateSigil(this.weatherText);
-        // })
-        // .on("pointerover", () => {this.weatherText.setTint(redHex)})
-        // .on("pointerout", () => {this.weatherText.setTint(0xFFFFFF)});
+        this.societyButton = this.add.image(width/2, 450, "moteSpinner").setOrigin(0.5).setInteractive({
+            hitArea: new Phaser.Geom.Circle(31, 31, 31),
+            hitAreaCallback: Phaser.Geom.Circle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.currSociety = (this.currSociety+1) % this.societyArr.length;
+            console.log(this.societyArr[this.currSociety]);
+            this.updateSigil(this.societyButton);
+        })
+        .on("pointerover", () => {this.societyButton.setTint(blueHex)})
+        .on("pointerout", () => {this.societyButton.setTint(0xFFFFFF)});
 
-        // this.societyText = this.add.bitmapText(width/2, height/2+180, "typedFont", "Society", 24).setOrigin(0.5).setInteractive({
-        //     hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 
-        //     hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-        //     useHandCursor: true
-        // })
-        // .on("pointerdown", () => {
-        //     this.currSociety = (this.currSociety+1) % this.societyArr.length;
-        //     console.log(this.societyArr[this.currSociety]);
-        //     this.updateSigil(this.societyText);
-        // })
-        // .on("pointerover", () => {this.societyText.setTint(redHex)})
-        // .on("pointerout", () => {this.societyText.setTint(0xFFFFFF)});
+        this.blueButton = this.add.image(width/2, 450, "blueButton").setOrigin(0.5).setInteractive({
+            hitArea: new Phaser.Geom.Circle(8, 8, 8),
+            hitAreaCallback: Phaser.Geom.Circle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.checkAnswer(); 
+        })
+        .on("pointerover", () => {this.blueButton.setTint(0xBBBBBB)})
+        .on("pointerout", () => {this.blueButton.setTint(0xFFFFFF)});
 
-        // this.buttons = this.add.group([this.colorText, this.travelText, this.weatherText, this.societyText]);
-
-        this.add.image(width/2, 450, "gear");
-
+        this.buttons = this.add.group([this.colorButton, this.travelButton, this.weatherButton, this.societyButton, this.blueButton]);
     }
 
     updateRayAndMoteLocation() {
@@ -159,15 +174,25 @@ class BluePrincePuzzle extends Phaser.Scene {
 
         // update the sigil sprites / locations
         switch (button) {
-            case this.colorText:
+            case this.colorButton:
                 this.colorRing.setVisible(false);
                 this.colorRing.setTexture(`${this.colorArr[this.currColor]}-ring`);
                 this.time.delayedCall(this.buttonCooldownTime, () => {
                     this.colorRing.setVisible(true);
                 }, null, this);
+
+                this.colorSpin = this.tweens.add({
+                    targets: this.colorButton,
+                    rotation: this.colorButton.rotation + Math.PI/4,
+                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    duration: this.buttonCooldownTime,
+                    repeat: 0,         
+                    yoyo: false,
+                });
+
                 break;
 
-            case this.travelText:
+            case this.travelButton:
                 this.colorRing.setVisible(false);
                 this.currColor = (this.currColor+3) % this.colorArr.length;
                 this.colorRing.setTexture(`${this.colorArr[this.currColor]}-ring`);
@@ -181,9 +206,19 @@ class BluePrincePuzzle extends Phaser.Scene {
                     this.updateRayAndMoteLocation();
                     this.colorRing.setVisible(true); 
                 }, null, this);
+
+                this.travelSpin = this.tweens.add({
+                    targets: this.travelButton,
+                    rotation: this.travelButton.rotation + Math.PI/2,
+                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    duration: this.buttonCooldownTime,
+                    repeat: 0,         
+                    yoyo: false,
+                });
+
                 break;
 
-            case this.weatherText:
+            case this.weatherButton:
                 this.colorRing.setVisible(false);
                 this.currColor = (this.currColor+3) % this.colorArr.length;
                 this.colorRing.setTexture(`${this.colorArr[this.currColor]}-ring`);
@@ -195,9 +230,19 @@ class BluePrincePuzzle extends Phaser.Scene {
                     this.updateRayAndMoteLocation();
                     this.colorRing.setVisible(true); 
                 }, null, this);
+
+                this.weatherSpin = this.tweens.add({
+                    targets: this.weatherButton,
+                    rotation: this.weatherButton.rotation + Math.PI,
+                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    duration: this.buttonCooldownTime,
+                    repeat: 0,         
+                    yoyo: false,
+                });
+
                 break;
 
-            case this.societyText:
+            case this.societyButton:
                 for (let i=0;i<16;i++) { 
                     this.allMotes[i].setVisible(false);
                     this.allMotes[i].setTexture(`${this.societyArr[this.currSociety]}-mote`);
@@ -205,6 +250,17 @@ class BluePrincePuzzle extends Phaser.Scene {
                 this.time.delayedCall(this.buttonCooldownTime, () => {
                     this.updateRayAndMoteLocation(); 
                 }, null, this);
+
+                this.societySpin = this.tweens.add({
+                    targets: this.societyButton,
+                    rotation: this.societyButton.rotation + (4*Math.PI),
+                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    duration: this.buttonCooldownTime,
+                    repeat: 0,         
+                    yoyo: false,
+                });
+
+
                 break;
         }
 
@@ -225,5 +281,16 @@ class BluePrincePuzzle extends Phaser.Scene {
             })
         }, null, this);
 
+    }
+
+    checkAnswer() {
+        if (
+            this.colorArr[this.currColor] == this.correct.color &&
+            this.travelArr[this.currTravel] == this.correct.travel &&
+            this.weatherArr[this.currWeather] == this.correct.weather &&
+            this.societyArr[this.currSociety] == this.correct.society
+        ) {
+            this.scene.start("menuScene");
+        }
     }
 }
