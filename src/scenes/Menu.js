@@ -17,9 +17,9 @@ class Menu extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            this.scene.start("blueScene"); 
+            this.scene.start("safeScene"); 
         })
-        .on("pointerover", () => {this.startText.setTint(redHex)})
+        .on("pointerover", () => {this.startText.setTint(blueHex)})
         .on("pointerout", () => {this.startText.setTint(0xFFFFFF)});
 
 

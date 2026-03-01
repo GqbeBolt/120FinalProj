@@ -61,6 +61,24 @@ class Load extends Phaser.Scene {
         this.load.image("travelSpinner", "TravelSpinner.png");
         this.load.image("raySpinner", "RaySpinner.png");
 
+        this.load.path = "./assets/images/safe/";
+
+        this.load.image("keypadTemp", "keypad.png");
+        this.load.image("keypadCircle", "keypadCircle.png");
+        
+        this.load.image("button1", "Button1.png");
+        this.load.image("button2", "Button2.png");
+        this.load.image("button3", "Button3.png");
+        this.load.image("button4", "Button4.png");
+        this.load.image("button5", "Button5.png");
+        this.load.image("button6", "Button6.png");
+        this.load.image("button7", "Button7.png");
+        this.load.image("button8", "Button8.png");
+        this.load.image("button9", "Button9.png");
+        this.load.image("button0", "Button0.png");
+        this.load.image("buttonEnter", "ButtonEnter.png");
+        this.load.image("buttonClear", "ButtonClear.png");
+
         // this.load.spritesheet("runner", "runner.png", {
         //     frameWidth: 30,
         //     frameHeight: 36

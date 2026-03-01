@@ -1,7 +1,7 @@
 /*
 Name: Gabriel Rybolt
 Game Name: 
-Time Spent: 
+Time Spent: 8
 Citations:  
 Creative Tilt: 
     
@@ -19,7 +19,7 @@ let config = {
         }
     },
     fps: 60,
-    scene: [ Load, Menu, Play, BluePrincePuzzle ],
+    scene: [ Load, Menu, Play, Sigil, Lock, Safe ],
 };
 
 let game = new Phaser.Game(config);

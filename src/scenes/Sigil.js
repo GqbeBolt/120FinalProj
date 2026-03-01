@@ -1,6 +1,6 @@
-class BluePrincePuzzle extends Phaser.Scene {
+class Sigil extends Phaser.Scene {
     constructor() {
-        super("blueScene");
+        super("sigilScene");
     }
 
     init() {
@@ -94,7 +94,6 @@ class BluePrincePuzzle extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.currColor = (this.currColor+1) % this.colorArr.length;
-            console.log(this.colorArr[this.currColor]);
             this.updateSigil(this.colorButton);
         })
         .on("pointerover", () => {this.colorButton.setTint(blueHex)})
@@ -107,7 +106,6 @@ class BluePrincePuzzle extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.currTravel = (this.currTravel+1) % this.travelArr.length;
-            console.log(this.travelArr[this.currTravel]);
             this.updateSigil(this.travelButton);
         })
         .on("pointerover", () => {this.travelButton.setTint(blueHex)})
@@ -120,7 +118,6 @@ class BluePrincePuzzle extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.currWeather = (this.currWeather+1) % this.weatherArr.length;
-            console.log(this.weatherArr[this.currWeather]);
             this.updateSigil(this.weatherButton);
         })
         .on("pointerover", () => {this.weatherButton.setTint(blueHex)})
@@ -133,7 +130,6 @@ class BluePrincePuzzle extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.currSociety = (this.currSociety+1) % this.societyArr.length;
-            console.log(this.societyArr[this.currSociety]);
             this.updateSigil(this.societyButton);
         })
         .on("pointerover", () => {this.societyButton.setTint(blueHex)})
@@ -184,7 +180,8 @@ class BluePrincePuzzle extends Phaser.Scene {
                 this.colorSpin = this.tweens.add({
                     targets: this.colorButton,
                     rotation: this.colorButton.rotation + Math.PI/4,
-                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    ease: 'Back.easeInOut',    
+                    easeParams: [1],    
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
                     yoyo: false,
@@ -210,7 +207,8 @@ class BluePrincePuzzle extends Phaser.Scene {
                 this.travelSpin = this.tweens.add({
                     targets: this.travelButton,
                     rotation: this.travelButton.rotation + Math.PI/2,
-                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    ease: 'Back.easeInOut',    
+                    easeParams: [1],
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
                     yoyo: false,
@@ -234,7 +232,8 @@ class BluePrincePuzzle extends Phaser.Scene {
                 this.weatherSpin = this.tweens.add({
                     targets: this.weatherButton,
                     rotation: this.weatherButton.rotation + Math.PI,
-                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    ease: 'Back.easeInOut',    
+                    easeParams: [0.7],      
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
                     yoyo: false,
@@ -254,12 +253,12 @@ class BluePrincePuzzle extends Phaser.Scene {
                 this.societySpin = this.tweens.add({
                     targets: this.societyButton,
                     rotation: this.societyButton.rotation + (4*Math.PI),
-                    ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+                    ease: 'Back.easeInOut',    
+                    easeParams: [0.5],
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
                     yoyo: false,
                 });
-
 
                 break;
         }
@@ -267,8 +266,8 @@ class BluePrincePuzzle extends Phaser.Scene {
         // play outer ring spin anim
         this.outerSpin = this.tweens.add({
             targets: this.outerCircle,
-            rotation: `+=${0.5}`,
-            ease: 'Back',       // 'Cubic', 'Elastic', 'Bounce', 'Back'
+            rotation: this.outerCircle.rotation + (Math.PI/6),
+            ease: 'Expo',
             duration: this.buttonCooldownTime,
             repeat: 0,         
             yoyo: false,
@@ -284,13 +283,25 @@ class BluePrincePuzzle extends Phaser.Scene {
     }
 
     checkAnswer() {
-        if (
-            this.colorArr[this.currColor] == this.correct.color &&
-            this.travelArr[this.currTravel] == this.correct.travel &&
-            this.weatherArr[this.currWeather] == this.correct.weather &&
-            this.societyArr[this.currSociety] == this.correct.society
-        ) {
-            this.scene.start("menuScene");
-        }
+        // turn off all buttons
+        this.buttons.children.each( (button)=> {
+            button.disableInteractive();
+            button.setTint(0xFFFFFF);
+        });
+    
+        // make buttons deactivated while changing
+        this.time.delayedCall(this.buttonCooldownTime, () => {
+            this.buttons.children.each( (button)=> {
+                if (
+                    this.colorArr[this.currColor] == this.correct.color &&
+                    this.travelArr[this.currTravel] == this.correct.travel &&
+                    this.weatherArr[this.currWeather] == this.correct.weather &&
+                    this.societyArr[this.currSociety] == this.correct.society
+                ) {
+                    this.scene.start("menuScene");
+                }
+                button.setInteractive();
+            })
+        }, null, this);
     }
 }
