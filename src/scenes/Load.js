@@ -79,6 +79,10 @@ class Load extends Phaser.Scene {
         this.load.image("buttonEnter", "ButtonEnter.png");
         this.load.image("buttonClear", "ButtonClear.png");
 
+        this.load.path = "./assets/images/lock/";
+
+        this.load.image("lockTemp", "lock.png");
+
         // this.load.spritesheet("runner", "runner.png", {
         //     frameWidth: 30,
         //     frameHeight: 36
