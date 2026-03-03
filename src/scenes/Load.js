@@ -18,6 +18,7 @@ class Load extends Phaser.Scene {
 
         this.load.path = "./assets/images/";
         this.load.image("noiseBG", "noiseBG.png");
+        this.load.image("backButton", "backButton.png");
 
         this.load.path = "./assets/images/bluePrince/";
         this.load.image("outerCircle", "OuterCircle.png");

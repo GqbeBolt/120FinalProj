@@ -61,8 +61,18 @@ class Sigil extends Phaser.Scene {
 
     create() {
         this.cameras.main.setBackgroundColor(blackHex);
-
         this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+
+        this.backButton = this.add.image(width - 42, height - 42, "backButton").setOrigin(0).setInteractive({
+            hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
+            hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.scene.start("playScene");
+        })
+        .on("pointerover", () => {this.backButton.setTint(blueHex)})
+        .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
 
         this.outerCircle = this.add.sprite(width/2, 162, "outerCircle").setOrigin(0.5);
         this.add.sprite(width/2, 25, "colorCircle").setOrigin(0.5, 0);
@@ -299,8 +309,11 @@ class Sigil extends Phaser.Scene {
                     this.societyArr[this.currSociety] == this.correct.society
                 ) {
                     this.scene.start("menuScene");
+                } else {
+                    button.setInteractive();
+                    this.cameras.main.shake(75, 0.005);
                 }
-                button.setInteractive();
+                
             })
         }, null, this);
     }
