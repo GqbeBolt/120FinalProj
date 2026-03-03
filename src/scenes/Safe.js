@@ -170,6 +170,7 @@ class Safe extends Phaser.Scene {
                 this.scene.start("menuScene");
             } else {
                 this.currentCode = [];
+                this.cameras.main.shake(75, 0.005);
             }
         })
         .on("pointerover", () => {this.buttonEnter.setTint(blueHex)})
