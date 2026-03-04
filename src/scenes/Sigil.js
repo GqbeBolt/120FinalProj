@@ -51,9 +51,9 @@ class Sigil extends Phaser.Scene {
         ]);
 
         this.correct = {
-            color: "green",
-            travel: "trains",
-            weather: "snow",
+            color: "orange",
+            travel: "naval",
+            weather: "foggy",
             society: "academic"
         };
 

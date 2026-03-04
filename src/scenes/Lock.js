@@ -9,7 +9,7 @@ class Lock extends Phaser.Scene {
         this.spot3 = 0;
         this.spot4 = 0;
 
-        this.correct = [0, 0, 0, 0];
+        this.correct = [1, 1, 2, 4];
     }
 
     create() {
