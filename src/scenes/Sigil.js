@@ -7,7 +7,7 @@ class Sigil extends Phaser.Scene {
 
         this.input.setPollAlways();
 
-        this.buttonCooldownTime = 1000;
+        this.buttonCooldownTime = 1558;
 
         this.colorArr = ["black", "red", "violet", "pink", "green", "yellow", "orange", "white"];
         this.travelArr = ["naval", "roads", "horseback", "trains", "aviation", "camels", "turtleback"];
@@ -61,7 +61,22 @@ class Sigil extends Phaser.Scene {
 
     create() {
         this.cameras.main.setBackgroundColor(blackHex);
-        this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+
+        this.time.addEvent({
+            delay: 700,
+            callback: () => {
+                if (this.bgImage.y < 0) {
+                    this.bgImage.y = 0;
+                    this.bgImage.setFlipY(true);
+                } else {
+                    this.bgImage.y = -50;
+                    this.bgImage.setFlipY(false);
+                }
+            },
+            callbackScope: this,
+            repeat: -1
+        })
 
         this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
@@ -69,6 +84,7 @@ class Sigil extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
+            this.sound.play("uiButtonSFX");
             this.scene.start("playScene");
         })
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
@@ -190,7 +206,7 @@ class Sigil extends Phaser.Scene {
                 this.colorSpin = this.tweens.add({
                     targets: this.colorButton,
                     rotation: this.colorButton.rotation + Math.PI/4,
-                    ease: 'Back.easeInOut',    
+                    ease: 'Expo.easeOut',    
                     easeParams: [1],    
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
@@ -217,7 +233,7 @@ class Sigil extends Phaser.Scene {
                 this.travelSpin = this.tweens.add({
                     targets: this.travelButton,
                     rotation: this.travelButton.rotation + Math.PI/2,
-                    ease: 'Back.easeInOut',    
+                    ease: 'Expo.easeOut',    
                     easeParams: [1],
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
@@ -242,7 +258,7 @@ class Sigil extends Phaser.Scene {
                 this.weatherSpin = this.tweens.add({
                     targets: this.weatherButton,
                     rotation: this.weatherButton.rotation + Math.PI,
-                    ease: 'Back.easeInOut',    
+                    ease: 'Expo.easeOut',    
                     easeParams: [0.7],      
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
@@ -263,7 +279,7 @@ class Sigil extends Phaser.Scene {
                 this.societySpin = this.tweens.add({
                     targets: this.societyButton,
                     rotation: this.societyButton.rotation + (4*Math.PI),
-                    ease: 'Back.easeInOut',    
+                    ease: 'Expo.easeOut',    
                     easeParams: [0.5],
                     duration: this.buttonCooldownTime,
                     repeat: 0,         
@@ -276,12 +292,14 @@ class Sigil extends Phaser.Scene {
         // play outer ring spin anim
         this.outerSpin = this.tweens.add({
             targets: this.outerCircle,
-            rotation: this.outerCircle.rotation + (Math.PI/6),
-            ease: 'Expo',
+            rotation: this.outerCircle.rotation + (Math.PI/3),
+            ease: 'Expo.easeOut',
             duration: this.buttonCooldownTime,
             repeat: 0,         
             yoyo: false,
         }) 
+
+        this.sound.play("sigilSpinSFX");
 
         // make buttons deactivated while changing
         this.time.delayedCall(this.buttonCooldownTime, () => {

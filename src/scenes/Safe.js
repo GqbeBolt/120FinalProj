@@ -12,7 +12,22 @@ class Safe extends Phaser.Scene {
     create() {
 
         this.cameras.main.setBackgroundColor(blackHex);
-        this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+
+        this.time.addEvent({
+            delay: 700,
+            callback: () => {
+                if (this.bgImage.y < 0) {
+                    this.bgImage.y = 0;
+                    this.bgImage.setFlipY(true);
+                } else {
+                    this.bgImage.y = -50;
+                    this.bgImage.setFlipY(false);
+                }
+            },
+            callbackScope: this,
+            repeat: -1
+        })
 
         this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
@@ -20,6 +35,7 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
+            this.sound.play("uiButtonSFX");
             this.scene.start("playScene");
         })
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
@@ -33,7 +49,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("1");
             this.currentCode.push("1");
             this.sound.play("physButtonSFX");
         })
@@ -46,7 +61,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("2");
             this.currentCode.push("2");
             this.sound.play("physButtonSFX");
         })
@@ -59,7 +73,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("3");
             this.currentCode.push("3");
             this.sound.play("physButtonSFX");
         })
@@ -72,7 +85,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("4");
             this.currentCode.push("4");
             this.sound.play("physButtonSFX");
         })
@@ -85,7 +97,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("5");
             this.currentCode.push("5");
             this.sound.play("physButtonSFX");
         })
@@ -98,7 +109,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("6");
             this.currentCode.push("6");
             this.sound.play("physButtonSFX");
         })
@@ -111,7 +121,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("7");
             this.currentCode.push("7");
             this.sound.play("physButtonSFX");
         })
@@ -124,7 +133,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("8");
             this.currentCode.push("8");
             this.sound.play("physButtonSFX");
         })
@@ -137,7 +145,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("9");
             this.currentCode.push("9"); 
             this.sound.play("physButtonSFX");
         })
@@ -150,7 +157,6 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("0");
             this.currentCode.push("0");
             this.sound.play("physButtonSFX");
         })
@@ -163,7 +169,7 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("Clear");
+            this.sound.play("physButtonSFX");
             this.currentCode = [];
         })
         .on("pointerover", () => {this.buttonClear.setTint(blueHex)})
@@ -175,8 +181,7 @@ class Safe extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            console.log("Enter");
-            console.log(JSON.stringify(this.correct));
+            this.sound.play("physButtonSFX");
             if (JSON.stringify(this.correct) == JSON.stringify(this.currentCode)) {
                 this.scene.start("menuScene");
             } else {

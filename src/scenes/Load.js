@@ -94,7 +94,9 @@ class Load extends Phaser.Scene {
         // })
 
         this.load.path = "./assets/sounds/";
-        this.load.audio("physButtonSFX", "physButtonClick.wav");    // arunangshubanerjee
+        this.load.audio("physButtonSFX", "physButtonClick.wav");    
+        this.load.audio("uiButtonSFX", "uiButtonClick.wav");   
+        this.load.audio("sigilSpinSFX", "sigilSpin.mp3");   
 
         this.load.path = "./assets/fonts/";
         this.load.bitmapFont("pixelFont", "PixeledFont.png", "PixeledFont.xml"); // OmegaPC777 

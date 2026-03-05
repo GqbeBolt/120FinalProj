@@ -9,7 +9,22 @@ class Play extends Phaser.Scene {
 
     create() {
         this.cameras.main.setBackgroundColor(blackHex);
-        this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+
+        this.time.addEvent({
+            delay: 700,
+            callback: () => {
+                if (this.bgImage.y < 0) {
+                    this.bgImage.y = 0;
+                    this.bgImage.setFlipY(true);
+                } else {
+                    this.bgImage.y = -50;
+                    this.bgImage.setFlipY(false);
+                }
+            },
+            callbackScope: this,
+            repeat: -1
+        })
 
         this.safeText = this.add.bitmapText(width/2, height/2, "typedFont", "SAFE", 36).setOrigin(0.5).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(-5, 10, 125, 35), 

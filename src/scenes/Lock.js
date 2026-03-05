@@ -17,7 +17,22 @@ class Lock extends Phaser.Scene {
     create() {
         // setting BG
         this.cameras.main.setBackgroundColor(blackHex);
-        this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+
+        this.time.addEvent({
+            delay: 700,
+            callback: () => {
+                if (this.bgImage.y < 0) {
+                    this.bgImage.y = 0;
+                    this.bgImage.setFlipY(true);
+                } else {
+                    this.bgImage.y = -50;
+                    this.bgImage.setFlipY(false);
+                }
+            },
+            callbackScope: this,
+            repeat: -1
+        })
 
         // back button
         this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
@@ -26,6 +41,7 @@ class Lock extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
+            this.sound.play("uiButtonSFX");
             this.scene.start("playScene");
         })
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
@@ -60,6 +76,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot1 = this.mod(this.spot1+1, 10);
             this.num1.setTexture(`button${this.spot1}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.oneUp.setTint(blueHex)})
         .on("pointerout", () => {this.oneUp.setTint(0xFFFFFF)});
@@ -72,6 +89,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot2 = this.mod(this.spot2+1, 10);
             this.num2.setTexture(`button${this.spot2}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.twoUp.setTint(blueHex)})
         .on("pointerout", () => {this.twoUp.setTint(0xFFFFFF)});
@@ -84,6 +102,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot3 = this.mod(this.spot3+1, 10);
             this.num3.setTexture(`button${this.spot3}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.threeUp.setTint(blueHex)})
         .on("pointerout", () => {this.threeUp.setTint(0xFFFFFF)});
@@ -96,6 +115,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot4 = this.mod(this.spot4+1, 10);
             this.num4.setTexture(`button${this.spot4}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.fourUp.setTint(blueHex)})
         .on("pointerout", () => {this.fourUp.setTint(0xFFFFFF)});
@@ -108,6 +128,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot1 = this.mod(this.spot1-1, 10);
             this.num1.setTexture(`button${this.spot1}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.oneDown.setTint(blueHex)})
         .on("pointerout", () => {this.oneDown.setTint(0xFFFFFF)});
@@ -120,6 +141,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot2 = this.mod(this.spot2-1, 10);
             this.num2.setTexture(`button${this.spot2}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.twoDown.setTint(blueHex)})
         .on("pointerout", () => {this.twoDown.setTint(0xFFFFFF)});
@@ -132,6 +154,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot3 = this.mod(this.spot3-1, 10);
             this.num3.setTexture(`button${this.spot3}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.threeDown.setTint(blueHex)})
         .on("pointerout", () => {this.threeDown.setTint(0xFFFFFF)});
@@ -144,6 +167,7 @@ class Lock extends Phaser.Scene {
         .on("pointerdown", () => {
             this.spot4 = this.mod(this.spot4-1, 10);
             this.num4.setTexture(`button${this.spot4}`);
+            this.sound.play("physButtonSFX", {rate: 9.5});
         })
         .on("pointerover", () => {this.fourDown.setTint(blueHex)})
         .on("pointerout", () => {this.fourDown.setTint(0xFFFFFF)});
