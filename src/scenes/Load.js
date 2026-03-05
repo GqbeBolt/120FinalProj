@@ -16,12 +16,14 @@ class Load extends Phaser.Scene {
             loadingBar.destroy();
         });
 
-        this.load.path = "./assets/images/";
+        // loading misc. images (UI, bg, etc)
+        this.load.path = "./assets/images/other/";
         this.load.image("noiseBG", "noiseBG.png");
         this.load.image("backButton", "backButton.png");
         this.load.image("arrowButton", "arrowButton.png");
 
-        this.load.path = "./assets/images/bluePrince/";
+        // loading sigil scene
+        this.load.path = "./assets/images/sigil/";
         this.load.image("outerCircle", "OuterCircle.png");
         this.load.image("centerSymbol", "CenterSymbol.png");
         this.load.image("colorCircle", "ColorCircle.png");
@@ -63,11 +65,13 @@ class Load extends Phaser.Scene {
         this.load.image("travelSpinner", "TravelSpinner.png");
         this.load.image("raySpinner", "RaySpinner.png");
 
+        // loading safe 
         this.load.path = "./assets/images/safe/";
 
-        this.load.image("keypadTemp", "keypad.png");
+        // safe BG
         this.load.image("keypadCircle", "keypadCircle.png");
         
+        // all num buttons (used for lock as well)
         this.load.image("button1", "Button1.png");
         this.load.image("button2", "Button2.png");
         this.load.image("button3", "Button3.png");
@@ -81,9 +85,9 @@ class Load extends Phaser.Scene {
         this.load.image("buttonEnter", "ButtonEnter.png");
         this.load.image("buttonClear", "ButtonClear.png");
 
+        // loading lock
         this.load.path = "./assets/images/lock/";
 
-        this.load.image("lockTemp", "lock.png");
         this.load.image("lockBrick", "lockBrick.png");
         this.load.image("arrowUp", "arrowUp.png");
         this.load.image("latch", "latch.png");
@@ -93,11 +97,13 @@ class Load extends Phaser.Scene {
         //     frameHeight: 36
         // })
 
+        // load all sounds
         this.load.path = "./assets/sounds/";
         this.load.audio("physButtonSFX", "physButtonClick.wav");    
         this.load.audio("uiButtonSFX", "uiButtonClick.wav");   
         this.load.audio("sigilSpinSFX", "sigilSpin.mp3");   
 
+        // load all fonts
         this.load.path = "./assets/fonts/";
         this.load.bitmapFont("pixelFont", "PixeledFont.png", "PixeledFont.xml"); // OmegaPC777 
         this.load.bitmapFont("typedFont", "typewriterFont.png", "typewriterFont.xml");  // GGBotNet
@@ -105,6 +111,7 @@ class Load extends Phaser.Scene {
     }
 
     create() {
+        // go to menu after loading
         this.scene.start("menuScene")
     }
 }
