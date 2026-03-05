@@ -54,6 +54,7 @@ class Lock extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.checkAnswer();
+            this.sound.play("uiButtonSFX", {rate: 0.75});
         })
         .on("pointerover", () => {this.latch.setTint(blueHex)})
         .on("pointerout", () => {this.latch.setTint(0xFFFFFF)});
