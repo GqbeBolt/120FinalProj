@@ -35,7 +35,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("1");
             this.currentCode.push("1");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button1.setTint(blueHex)})
         .on("pointerout", () => {this.button1.setTint(0xFFFFFF)});
@@ -48,7 +48,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("2");
             this.currentCode.push("2");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button2.setTint(blueHex)})
         .on("pointerout", () => {this.button2.setTint(0xFFFFFF)});
@@ -61,7 +61,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("3");
             this.currentCode.push("3");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button3.setTint(blueHex)})
         .on("pointerout", () => {this.button3.setTint(0xFFFFFF)});
@@ -74,7 +74,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("4");
             this.currentCode.push("4");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button4.setTint(blueHex)})
         .on("pointerout", () => {this.button4.setTint(0xFFFFFF)});
@@ -87,7 +87,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("5");
             this.currentCode.push("5");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button5.setTint(blueHex)})
         .on("pointerout", () => {this.button5.setTint(0xFFFFFF)});
@@ -100,7 +100,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("6");
             this.currentCode.push("6");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button6.setTint(blueHex)})
         .on("pointerout", () => {this.button6.setTint(0xFFFFFF)});
@@ -113,7 +113,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("7");
             this.currentCode.push("7");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button7.setTint(blueHex)})
         .on("pointerout", () => {this.button7.setTint(0xFFFFFF)});
@@ -126,7 +126,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("8");
             this.currentCode.push("8");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button8.setTint(blueHex)})
         .on("pointerout", () => {this.button8.setTint(0xFFFFFF)});
@@ -139,7 +139,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("9");
             this.currentCode.push("9"); 
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button9.setTint(blueHex)})
         .on("pointerout", () => {this.button9.setTint(0xFFFFFF)});
@@ -152,7 +152,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             console.log("0");
             this.currentCode.push("0");
-            console.log(this.currentCode);
+            this.sound.play("physButtonSFX");
         })
         .on("pointerover", () => {this.button0.setTint(blueHex)})
         .on("pointerout", () => {this.button0.setTint(0xFFFFFF)});
