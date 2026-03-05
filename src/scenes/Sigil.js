@@ -63,7 +63,7 @@ class Sigil extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(blackHex);
         this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
 
-        this.backButton = this.add.image(width - 42, height - 42, "backButton").setOrigin(0).setInteractive({
+        this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
             useHandCursor: true

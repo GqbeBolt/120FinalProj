@@ -4,19 +4,23 @@ class Lock extends Phaser.Scene {
     }
 
     init() {
+        // the number of each "spot"
         this.spot1 = 0;
         this.spot2 = 0;
         this.spot3 = 0;
         this.spot4 = 0;
 
+        // correct combo
         this.correct = [1, 1, 2, 4];
     }
 
     create() {
+        // setting BG
         this.cameras.main.setBackgroundColor(blackHex);
         this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
 
-        this.backButton = this.add.image(width - 42, height - 42, "backButton").setOrigin(0).setInteractive({
+        // back button
+        this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
             useHandCursor: true
@@ -40,11 +44,14 @@ class Lock extends Phaser.Scene {
 
         this.add.image(width/2, height/2, "lockBrick").setOrigin(0.5);
 
+        // adding numbers
         this.num1 = this.add.image(368, 380, `button${this.spot1}`).setOrigin(0);
         this.num2 = this.add.image(432, 380, `button${this.spot2}`).setOrigin(0);
         this.num3 = this.add.image(496, 380, `button${this.spot3}`).setOrigin(0);
         this.num4 = this.add.image(560, 380, `button${this.spot4}`).setOrigin(0);
 
+
+        // arrow buttons
         this.oneUp = this.add.image(368, 336, "arrowUp").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 14, 32, 18),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -145,6 +152,7 @@ class Lock extends Phaser.Scene {
     checkAnswer() {
         let curr = [this.spot1, this.spot2, this.spot3, this.spot4];
         if (JSON.stringify(this.correct) == JSON.stringify(curr)) {
+            // animates the latch when correct
             this.tweens.add({
                 targets: this.latch,
                 y: this.latch.y - 30,
@@ -159,6 +167,7 @@ class Lock extends Phaser.Scene {
                 completeDelay: 500
             });
         } else {
+            // screen shake when wrong
             this.cameras.main.shake(75, 0.005);
         }
     }

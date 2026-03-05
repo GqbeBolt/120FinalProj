@@ -19,7 +19,7 @@ let config = {
         }
     },
     fps: 60,
-    scene: [ Load, Menu, Play, Sigil, Lock, Safe ],
+    scene: [ Load, Menu, Play, FrontView, RightView, LeftView, BackView, Sigil, Lock, Safe ],
 };
 
 let game = new Phaser.Game(config);

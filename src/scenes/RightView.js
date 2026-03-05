@@ -1,6 +1,6 @@
-class FrontView extends Phaser.Scene {
+class RightView extends Phaser.Scene {
     constructor() {
-        super("frontScene");
+        super("rightScene");
     }
 
     init() {
@@ -18,7 +18,7 @@ class FrontView extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            this.scene.start("leftScene");
+            this.scene.start("frontScene");
         })
         .on("pointerover", () => {this.leftButton.setTint(blueHex)})
         .on("pointerout", () => {this.leftButton.setTint(0xFFFFFF)});
@@ -29,12 +29,12 @@ class FrontView extends Phaser.Scene {
             useHandCursor: true
         })
         .on("pointerdown", () => {
-            this.scene.start("rightScene");
+            this.scene.start("backScene");
         })
         .on("pointerover", () => {this.rightButton.setTint(blueHex)})
         .on("pointerout", () => {this.rightButton.setTint(0xFFFFFF)});
 
-        this.add.bitmapText(width/2, height/2, "handwrittenFont", "FRONT", 36).setOrigin(0.5);
+        this.add.bitmapText(width/2, height/2, "handwrittenFont", "RIGHT", 36).setOrigin(0.5);
     }
 
     update() {
