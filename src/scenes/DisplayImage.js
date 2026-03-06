@@ -1,4 +1,4 @@
-class Image extends Phaser.Scene {
+class DisplayImage extends Phaser.Scene {
     constructor() {
         super("imageScene");
     }
@@ -42,7 +42,7 @@ class Image extends Phaser.Scene {
         .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
 
         //show unique image
-        this.add.image(width/2, height/2, this.iamge).setOrigin(0.5);   // will always be in center of screen
+        this.add.image(width/2, height/2, this.image).setOrigin(0.5);   // will always be in center of screen
 
     }   
 

@@ -42,7 +42,7 @@ class Lock extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.sound.play("uiButtonSFX");
-            this.scene.start("playScene");
+            this.scene.start("frontScene");
         })
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
         .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
@@ -187,7 +187,8 @@ class Lock extends Phaser.Scene {
                 repeat: 0,         
                 yoyo: false,
                 onComplete: () => {
-                    this.scene.start("menuScene");
+                    lockOpened = true;
+                    this.scene.start("frontScene");
                 },
                 completeDelay: 500
             });

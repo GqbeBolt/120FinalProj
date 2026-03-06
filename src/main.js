@@ -1,7 +1,7 @@
 /*
 Name: Gabriel Rybolt
 Game Name: 
-Time Spent: 8
+Time Spent: 20
 Citations:  
 Creative Tilt: 
     
@@ -19,7 +19,7 @@ let config = {
         }
     },
     fps: 60,
-    scene: [ Load, Menu, Play, FrontView, RightView, LeftView, BackView, Sigil, Lock, Safe, Image],
+    scene: [ Load, Menu, Play, FrontView, RightView, LeftView, BackView, Sigil, Lock, Safe, DisplayImage],
 };
 
 let game = new Phaser.Game(config);
@@ -32,3 +32,4 @@ let whiteHex = 0xFFFFFF;
 let grayHex = 0xAAAAAA;
 
 
+let lockOpened = false;
