@@ -26,6 +26,26 @@ class LeftView extends Phaser.Scene {
             repeat: -1
         })
 
+        this.add.image(0, 0, "leftScene").setOrigin(0);
+
+        // clickable spinner
+        this.spinnerButton = this.add.image(406, 330, "spinner").setOrigin(0).setInteractive({
+            hitArea: new Phaser.Geom.Rectangle(0, 0, 148, 64), 
+            hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.sound.play("uiButtonSFX");
+            if (!sigilComplete) {
+                this.scene.start("sigilScene");
+            } else {
+                this.scene.start("imageScene", {image: "", prevScene: this.scene.key})
+            }
+            
+        })
+        .on("pointerover", () => {this.spinnerButton.setTint(grayHex)})
+        .on("pointerout", () => {this.spinnerButton.setTint(0xFFFFFF)});
+
         // left & right buttons
         this.leftButton = this.add.image(32, height - 64, "arrowButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32), 
@@ -51,7 +71,7 @@ class LeftView extends Phaser.Scene {
         .on("pointerover", () => {this.rightButton.setTint(blueHex)})
         .on("pointerout", () => {this.rightButton.setTint(0xFFFFFF)});
 
-        this.add.bitmapText(width/2, height/2, "handwrittenFont", "LEFT", 36).setOrigin(0.5);
+        //this.add.bitmapText(width/2, height/2, "handwrittenFont", "LEFT", 36).setOrigin(0.5);
     }
 
     update() {

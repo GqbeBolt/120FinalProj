@@ -33,3 +33,4 @@ let grayHex = 0xAAAAAA;
 
 
 let lockOpened = false;
+let sigilComplete = false;

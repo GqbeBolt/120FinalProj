@@ -24,6 +24,7 @@ class Load extends Phaser.Scene {
         this.load.image("backButton", "backButton.png");
         this.load.image("arrowButton", "arrowButton.png");
         
+        // front scene
         this.load.image("frontScene", "frontScene.png");
         this.load.image("frontSceneOpened", "FrontSceneUnlocked.png");
         this.load.image("postIt", "postit.png");
@@ -32,6 +33,11 @@ class Load extends Phaser.Scene {
         this.load.image("smallDoc", "smallDoc.png");
         this.load.image("bigDoc", "bigDoc.png");
         this.load.image("clickableCabinet", "clickableCabinet.png");
+        this.load.image("julyCard", "julyCard.png");
+
+        // left scene
+        this.load.image("leftScene", "leftScene.png");
+        this.load.image("spinner", "spinner.png");
 
         // loading sigil scene
         this.load.path = "./assets/images/sigil/";

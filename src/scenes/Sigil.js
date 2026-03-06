@@ -54,7 +54,7 @@ class Sigil extends Phaser.Scene {
             color: "orange",
             travel: "naval",
             weather: "foggy",
-            society: "academic"
+            society: "martial"
         };
 
     }
@@ -85,7 +85,7 @@ class Sigil extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.sound.play("uiButtonSFX");
-            this.scene.start("playScene");
+            this.scene.start("leftScene");
         })
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
         .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
@@ -319,19 +319,18 @@ class Sigil extends Phaser.Scene {
     
         // make buttons deactivated while changing
         this.time.delayedCall(this.buttonCooldownTime, () => {
-            this.buttons.children.each( (button)=> {
-                if (
+            if (
                     this.colorArr[this.currColor] == this.correct.color &&
                     this.travelArr[this.currTravel] == this.correct.travel &&
                     this.weatherArr[this.currWeather] == this.correct.weather &&
                     this.societyArr[this.currSociety] == this.correct.society
-                ) {
-                    this.scene.start("menuScene");
-                } else {
-                    button.setInteractive();
-                    this.cameras.main.shake(75, 0.005);
-                }
-                
+            ) {
+                this.scene.start("imageScene", {image: "", prevScene: "leftScene"})
+            }
+
+            this.buttons.children.each( (button)=> {
+                button.setInteractive();
+                this.cameras.main.shake(75, 0.005);
             })
         }, null, this);
     }

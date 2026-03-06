@@ -188,7 +188,7 @@ class Lock extends Phaser.Scene {
                 yoyo: false,
                 onComplete: () => {
                     lockOpened = true;
-                    this.scene.start("frontScene");
+                    this.scene.start("imageScene", {image: "julyCard", prevScene: "frontScene"});
                 },
                 completeDelay: 500
             });
