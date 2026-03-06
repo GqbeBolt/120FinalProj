@@ -316,6 +316,18 @@ class Sigil extends Phaser.Scene {
             button.disableInteractive();
             button.setTint(0xFFFFFF);
         });
+
+        // play outer ring spin anim
+        this.outerSpin = this.tweens.add({
+            targets: this.outerCircle,
+            rotation: this.outerCircle.rotation + (Math.PI/3),
+            ease: 'Expo.easeOut',
+            duration: this.buttonCooldownTime,
+            repeat: 0,         
+            yoyo: false,
+        }) 
+
+        this.sound.play("sigilSpinSFX");
     
         // make buttons deactivated while changing
         this.time.delayedCall(this.buttonCooldownTime, () => {
@@ -325,7 +337,7 @@ class Sigil extends Phaser.Scene {
                     this.weatherArr[this.currWeather] == this.correct.weather &&
                     this.societyArr[this.currSociety] == this.correct.society
             ) {
-                this.scene.start("imageScene", {image: "", prevScene: "leftScene"})
+                this.scene.start("imageScene", {image: "23Card", prevScene: "leftScene"})
             }
 
             this.buttons.children.each( (button)=> {

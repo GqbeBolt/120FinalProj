@@ -39,7 +39,7 @@ class LeftView extends Phaser.Scene {
             if (!sigilComplete) {
                 this.scene.start("sigilScene");
             } else {
-                this.scene.start("imageScene", {image: "", prevScene: this.scene.key})
+                this.scene.start("imageScene", {image: "23Card", prevScene: this.scene.key})
             }
             
         })

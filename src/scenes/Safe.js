@@ -4,7 +4,7 @@ class Safe extends Phaser.Scene {
     }
 
     init() {
-        this.correct = ["1", "2", "3", "4"];
+        this.correct = ["0", "7", "2", "3"];
 
         this.currentCode = [];
     }
