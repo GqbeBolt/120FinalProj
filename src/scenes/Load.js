@@ -4,6 +4,7 @@ class Load extends Phaser.Scene {
     }
 
     preload() {
+        console.log("huh?")
         // loading bar
         // see: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/loader/
         let loadingBar = this.add.graphics();
@@ -23,6 +24,7 @@ class Load extends Phaser.Scene {
         this.load.image("arrowButton", "arrowButton.png");
         this.load.image("frontScene", "frontScene.png");
         this.load.image("postIt", "postit.png");
+        this.load.image("postItBig", "PostItBig.png");
 
         // loading sigil scene
         this.load.path = "./assets/images/sigil/";

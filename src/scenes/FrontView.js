@@ -36,7 +36,7 @@ class FrontView extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.sound.play("uiButtonSFX");
-            this.scene.start("leftScene");
+            this.scene.start("imageScene", {image: "postItBig", prevScene: this.scene.key});
         })
         .on("pointerover", () => {this.postItButton.setTint(grayHex)})
         .on("pointerout", () => {this.postItButton.setTint(0xFFFFFF)});
