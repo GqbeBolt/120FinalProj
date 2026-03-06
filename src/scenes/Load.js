@@ -21,6 +21,8 @@ class Load extends Phaser.Scene {
         this.load.image("noiseBG", "noiseBG.png");
         this.load.image("backButton", "backButton.png");
         this.load.image("arrowButton", "arrowButton.png");
+        this.load.image("frontScene", "frontScene.png");
+        this.load.image("postIt", "postit.png");
 
         // loading sigil scene
         this.load.path = "./assets/images/sigil/";

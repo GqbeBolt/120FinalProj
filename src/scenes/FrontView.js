@@ -26,6 +26,21 @@ class FrontView extends Phaser.Scene {
             repeat: -1
         })
 
+        this.add.image(0, 0, "frontScene").setOrigin(0);
+
+        // post it note
+        this.postItButton = this.add.image(683, 211, "postIt").setOrigin(0).setInteractive({
+            hitArea: new Phaser.Geom.Rectangle(0, 0, 29, 26), 
+            hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+            useHandCursor: true
+        })
+        .on("pointerdown", () => {
+            this.sound.play("uiButtonSFX");
+            this.scene.start("leftScene");
+        })
+        .on("pointerover", () => {this.postItButton.setTint(grayHex)})
+        .on("pointerout", () => {this.postItButton.setTint(0xFFFFFF)});
+
         // left & right buttons
         this.leftButton = this.add.image(32, height - 64, "arrowButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32), 
@@ -51,7 +66,7 @@ class FrontView extends Phaser.Scene {
         .on("pointerover", () => {this.rightButton.setTint(blueHex)})
         .on("pointerout", () => {this.rightButton.setTint(0xFFFFFF)});
 
-        this.add.bitmapText(width/2, height/2, "handwrittenFont", "FRONT", 36).setOrigin(0.5);
+        //  this.add.bitmapText(width/2, height/2, "handwrittenFont", "FRONT", 36).setOrigin(0.5);
     }
 
     update() {
