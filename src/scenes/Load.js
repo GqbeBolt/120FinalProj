@@ -41,6 +41,8 @@ class Load extends Phaser.Scene {
         this.load.image("23Card", "23Card.png");
 
         // right scene
+        this.load.image("rightScene", "rightScene.png");
+        this.load.image("smallLetter", "smallLetter.png");
         this.load.image("bigLetter", "SouthKeyNote.png");
 
         // loading sigil scene

@@ -11,7 +11,10 @@ let config = {
     width: 960,
     height: 600,
     pixelArt: true,
-    zoom: 1,
+    scale: {
+        mode: Phaser.Scale.NONE,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     physics: {
         default: "arcade",
         arcade: {
