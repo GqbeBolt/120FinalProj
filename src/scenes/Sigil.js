@@ -337,6 +337,7 @@ class Sigil extends Phaser.Scene {
                     this.weatherArr[this.currWeather] == this.correct.weather &&
                     this.societyArr[this.currSociety] == this.correct.society
             ) {
+                sigilComplete = true;
                 this.scene.start("imageScene", {image: "23Card", prevScene: "leftScene"})
             }
 

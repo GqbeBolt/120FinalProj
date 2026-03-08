@@ -45,6 +45,13 @@ class Load extends Phaser.Scene {
         this.load.image("smallLetter", "smallLetter.png");
         this.load.image("bigLetter", "SouthKeyNote.png");
 
+        //back scene
+        this.load.image("backScene", "backScene.png");
+        this.load.image("smallSafe", "smallSafe.png");
+        this.load.image("handle", "handle.png");
+        this.load.image("smallRedCard", "smallRedCard.png");
+        this.load.image("1152Card", "1152Card.png");
+
         // loading sigil scene
         this.load.path = "./assets/images/sigil/";
         this.load.image("outerCircle", "OuterCircle.png");

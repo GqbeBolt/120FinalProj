@@ -36,7 +36,7 @@ class Safe extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.sound.play("uiButtonSFX");
-            this.scene.start("playScene");
+            this.scene.start("backScene");
         })
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
         .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
