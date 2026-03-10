@@ -24,6 +24,11 @@ class Load extends Phaser.Scene {
         this.load.image("backButton", "backButton.png");
         this.load.image("arrowButton", "arrowButton.png");
         this.load.image("skipButton", "skipButton.png");
+
+        // loading letter scene
+        this.load.image("safeWithLetter", "safeWithLetter.png");
+        this.load.image("redLetter", "redLetter.png");
+
         
         // front scene
         this.load.image("frontScene", "frontScene.png");
@@ -124,6 +129,7 @@ class Load extends Phaser.Scene {
         this.load.image("arrowUp", "arrowUp.png");
         this.load.image("latch", "latch.png");
 
+   
         // this.load.spritesheet("runner", "runner.png", {
         //     frameWidth: 30,
         //     frameHeight: 36

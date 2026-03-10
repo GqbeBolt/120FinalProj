@@ -183,7 +183,7 @@ class Safe extends Phaser.Scene {
         .on("pointerdown", () => {
             this.sound.play("physButtonSFX");
             if (JSON.stringify(this.correct) == JSON.stringify(this.currentCode)) {
-                this.scene.start("menuScene");
+                this.scene.start("letterScene");
             } else {
                 this.currentCode = [];
                 this.cameras.main.shake(75, 0.005);
@@ -199,7 +199,7 @@ class Safe extends Phaser.Scene {
                 useHandCursor: true
             })
             .on("pointerdown", () => {
-                this.scene.start("menuScene");
+                this.scene.start("letterScene");
             })
             .on("pointerover", () => {this.skipButton.setTint(redHex)})
             .on("pointerout", () => {this.skipButton.setTint(0xFFFFFF)});
