@@ -175,6 +175,8 @@ class Sigil extends Phaser.Scene {
         this.buttons = this.add.group([this.colorButton, this.travelButton, this.weatherButton, this.societyButton, this.blueButton]);
 
         if (graderMode) {
+            this.correctSigil = this.add.image(96, height/2, "correctSigil").setOrigin(0, 0.5);
+
             this.skipButton = this.add.image(800, height/2, "skipButton").setOrigin(0, 0.5).setInteractive({
                 hitArea: new Phaser.Geom.Rectangle(0, 0, 64, 32),
                 hitAreaCallback: Phaser.Geom.Rectangle.Contains,
