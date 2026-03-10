@@ -36,7 +36,9 @@ class BackView extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.sound.play("uiButtonSFX");
-            this.scene.start("imageScene", {image: "1152Card", prevScene: this.scene.key});
+            this.scene.start("imageScene", {image: "1152Card", prevScene: this.scene.key,
+                addGraderText: graderMode ? () => {this.scene.get("imageScene").add.bitmapText(width/2, height/2 + 50, "handwrittenFont", "red notes are always false", 22).setOrigin(0.5).setTint(pinkHex)} : undefined
+            });
         })
         .on("pointerover", () => {this.cardButton.setTint(grayHex)})
         .on("pointerout", () => {this.cardButton.setTint(0xFFFFFF)});

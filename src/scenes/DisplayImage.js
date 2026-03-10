@@ -5,7 +5,9 @@ class DisplayImage extends Phaser.Scene {
 
     init(data) {
         this.image = data.image;
-        this.prevScene = data.prevScene
+        this.prevScene = data.prevScene;
+        this.addGraderText = data.addGraderText;
+        console.log(this.addGraderText)
     }
 
     create() {
@@ -44,6 +46,11 @@ class DisplayImage extends Phaser.Scene {
         //show unique image
         this.add.image(width/2, height/2, this.image).setOrigin(0.5);   // will always be in center of screen
 
+        if (this.addGraderText != undefined) {
+            console.log("?");
+            this.addGraderText();
+        }
+       
     }   
 
 }

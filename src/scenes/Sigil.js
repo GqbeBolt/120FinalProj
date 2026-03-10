@@ -173,6 +173,41 @@ class Sigil extends Phaser.Scene {
         .on("pointerout", () => {this.blueButton.setTint(0xFFFFFF)});
 
         this.buttons = this.add.group([this.colorButton, this.travelButton, this.weatherButton, this.societyButton, this.blueButton]);
+
+        if (graderMode) {
+            this.skipButton = this.add.image(800, height/2, "skipButton").setOrigin(0, 0.5).setInteractive({
+                hitArea: new Phaser.Geom.Rectangle(0, 0, 64, 32),
+                hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+                useHandCursor: true
+            })
+            .on("pointerdown", () => {
+                // turn off all buttons
+                this.buttons.children.each( (button)=> {
+                    button.disableInteractive();
+                    button.setTint(0xFFFFFF);
+                });
+
+                // play outer ring spin anim
+                this.outerSpin = this.tweens.add({
+                    targets: this.outerCircle,
+                    rotation: this.outerCircle.rotation + (Math.PI/3),
+                    ease: 'Expo.easeOut',
+                    duration: this.buttonCooldownTime,
+                    repeat: 0,         
+                    yoyo: false,
+                }) 
+
+                this.sound.play("sigilSpinSFX");
+    
+                // make buttons deactivated while changing
+                this.time.delayedCall(this.buttonCooldownTime, () => {
+                    sigilComplete = true;
+                    this.scene.start("imageScene", {image: "23Card", prevScene: "leftScene"})
+                }, null, this);
+            })
+            .on("pointerover", () => {this.skipButton.setTint(redHex)})
+            .on("pointerout", () => {this.skipButton.setTint(0xFFFFFF)});
+        }
     }
 
     updateRayAndMoteLocation() {

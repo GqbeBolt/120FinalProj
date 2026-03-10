@@ -68,7 +68,12 @@ class FrontView extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.sound.play("uiButtonSFX");
-            this.scene.start("imageScene", {image: "postItBig", prevScene: this.scene.key});
+            console.log(`GraderMode: ${graderMode}`)
+            this.scene.start("imageScene", {image: "postItBig", prevScene: this.scene.key, 
+                addGraderText: graderMode ? () => {
+                    this.scene.get("imageScene").add.bitmapText(width/2, height/2 + 100, "handwrittenFont", "11/24", 36).setOrigin(0.5).setTint(darkPinkHex);
+                } : undefined
+            });
         })
         .on("pointerover", () => {this.postItButton.setTint(grayHex)})
         .on("pointerout", () => {this.postItButton.setTint(0xFFFFFF)});

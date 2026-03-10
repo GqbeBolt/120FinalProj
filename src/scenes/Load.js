@@ -23,6 +23,7 @@ class Load extends Phaser.Scene {
         this.load.image("noiseBG", "noiseBG.png");
         this.load.image("backButton", "backButton.png");
         this.load.image("arrowButton", "arrowButton.png");
+        this.load.image("skipButton", "skipButton.png");
         
         // front scene
         this.load.image("frontScene", "frontScene.png");

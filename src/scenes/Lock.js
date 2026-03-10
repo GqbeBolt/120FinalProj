@@ -172,6 +172,32 @@ class Lock extends Phaser.Scene {
         })
         .on("pointerover", () => {this.fourDown.setTint(blueHex)})
         .on("pointerout", () => {this.fourDown.setTint(0xFFFFFF)});
+
+        if (graderMode) {
+            this.skipButton = this.add.image(800, height/2, "skipButton").setOrigin(0, 0.5).setInteractive({
+                hitArea: new Phaser.Geom.Rectangle(0, 0, 64, 32),
+                hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+                useHandCursor: true
+            })
+            .on("pointerdown", () => {
+                this.tweens.add({
+                    targets: this.latch,
+                    y: this.latch.y - 30,
+                    ease: 'Back.easeInOut',    
+                    easeParams: [1],
+                    duration: 1000,
+                    repeat: 0,         
+                    yoyo: false,
+                    onComplete: () => {
+                        lockOpened = true;
+                        this.scene.start("imageScene", {image: "julyCard", prevScene: "frontScene"});
+                    },
+                    completeDelay: 500
+                });
+            })
+            .on("pointerover", () => {this.skipButton.setTint(redHex)})
+            .on("pointerout", () => {this.skipButton.setTint(0xFFFFFF)});
+        }
     }
 
     checkAnswer() {

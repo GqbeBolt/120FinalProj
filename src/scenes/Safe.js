@@ -192,6 +192,19 @@ class Safe extends Phaser.Scene {
         .on("pointerover", () => {this.buttonEnter.setTint(blueHex)})
         .on("pointerout", () => {this.buttonEnter.setTint(0xFFFFFF)});
 
+        if (graderMode) {
+            this.skipButton = this.add.image(800, height/2, "skipButton").setOrigin(0, 0.5).setInteractive({
+                hitArea: new Phaser.Geom.Rectangle(0, 0, 64, 32),
+                hitAreaCallback: Phaser.Geom.Rectangle.Contains,
+                useHandCursor: true
+            })
+            .on("pointerdown", () => {
+                this.scene.start("menuScene");
+            })
+            .on("pointerover", () => {this.skipButton.setTint(redHex)})
+            .on("pointerout", () => {this.skipButton.setTint(0xFFFFFF)});
+        }
+
     }
 
 }

@@ -22,7 +22,7 @@ let config = {
         }
     },
     fps: 60,
-    scene: [ Load, Menu, Play, FrontView, RightView, LeftView, BackView, Sigil, Lock, Safe, DisplayImage],
+    scene: [ Load, Menu, FrontView, RightView, LeftView, BackView, Sigil, Lock, Safe, DisplayImage],
 };
 
 let game = new Phaser.Game(config);
@@ -30,6 +30,8 @@ let {width, height} = game.config;
 
 let blueHex = 0x5fcde4;
 let redHex = 0xDC143C;
+let pinkHex = 0xFACADE;
+let darkPinkHex = 0x8f747f;
 let blackHex = 0x111111;
 let whiteHex = 0xFFFFFF;
 let grayHex = 0xAAAAAA;
@@ -37,3 +39,4 @@ let grayHex = 0xAAAAAA;
 
 let lockOpened = false;
 let sigilComplete = false;
+let graderMode = false;
