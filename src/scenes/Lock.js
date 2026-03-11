@@ -16,23 +16,7 @@ class Lock extends Phaser.Scene {
 
     create() {
         // setting BG
-        this.cameras.main.setBackgroundColor(blackHex);
-        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
-
-        this.time.addEvent({
-            delay: 700,
-            callback: () => {
-                if (this.bgImage.y < 0) {
-                    this.bgImage.y = 0;
-                    this.bgImage.setFlipY(true);
-                } else {
-                    this.bgImage.y = -50;
-                    this.bgImage.setFlipY(false);
-                }
-            },
-            callbackScope: this,
-            repeat: -1
-        })
+        setBG(this);
 
         // back button
         this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
@@ -47,6 +31,7 @@ class Lock extends Phaser.Scene {
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
         .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
 
+        // clickable latch, will be how the user checks the code answer
         this.latch = this.add.image(352, 111, "latch").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 257, 193),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -59,6 +44,7 @@ class Lock extends Phaser.Scene {
         .on("pointerover", () => {this.latch.setTint(blueHex)})
         .on("pointerout", () => {this.latch.setTint(0xFFFFFF)});
 
+        // adding lock sprite
         this.add.image(width/2, height/2, "lockBrick").setOrigin(0.5);
 
         // adding numbers
@@ -173,6 +159,7 @@ class Lock extends Phaser.Scene {
         .on("pointerover", () => {this.fourDown.setTint(blueHex)})
         .on("pointerout", () => {this.fourDown.setTint(0xFFFFFF)});
 
+        // if grader mode, add skip button
         if (graderMode) {
             this.skipButton = this.add.image(800, height/2, "skipButton").setOrigin(0, 0.5).setInteractive({
                 hitArea: new Phaser.Geom.Rectangle(0, 0, 64, 32),
@@ -200,6 +187,8 @@ class Lock extends Phaser.Scene {
         }
     }
 
+    // checks the inputted answer to answer array
+    // plays lock open animation
     checkAnswer() {
         let curr = [this.spot1, this.spot2, this.spot3, this.spot4];
         if (JSON.stringify(this.correct) == JSON.stringify(curr)) {
@@ -226,6 +215,7 @@ class Lock extends Phaser.Scene {
 
     // True modulo for js
     // https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
+    // used for flipping through the numbers on the lock
     mod(n, m) {
         return ((n % m) + m) % m;
     }

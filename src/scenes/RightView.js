@@ -3,31 +3,12 @@ class RightView extends Phaser.Scene {
         super("rightScene");
     }
 
-    init() {
-
-    }
-
     create() {
-        this.cameras.main.setBackgroundColor(blackHex);
-        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        // setting BG
+        setBG(this);
 
-        this.time.addEvent({
-            delay: 700,
-            callback: () => {
-                if (this.bgImage.y < 0) {
-                    this.bgImage.y = 0;
-                    this.bgImage.setFlipY(true);
-                } else {
-                    this.bgImage.y = -50;
-                    this.bgImage.setFlipY(false);
-                }
-            },
-            callbackScope: this,
-            repeat: -1
-        })
-
+        // adding scene art
         this.add.image(0, 0, "rightScene").setOrigin(0);
-
 
         // letter
         this.letterButton = this.add.image(722, 345, "smallLetter").setOrigin(0).setInteractive({
@@ -66,12 +47,5 @@ class RightView extends Phaser.Scene {
         })
         .on("pointerover", () => {this.rightButton.setTint(blueHex)})
         .on("pointerout", () => {this.rightButton.setTint(0xFFFFFF)});
-
-        //this.add.bitmapText(width/2, height/2, "handwrittenFont", "RIGHT", 36).setOrigin(0.5);
-    }
-
-    update() {
-                 
-
     }
 }

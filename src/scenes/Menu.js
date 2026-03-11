@@ -5,24 +5,8 @@ class Menu extends Phaser.Scene {
 
     create() {
 
-        this.cameras.main.setBackgroundColor(blackHex);
-
-        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
-
-        this.time.addEvent({
-            delay: 700,
-            callback: () => {
-                if (this.bgImage.y < 0) {
-                    this.bgImage.y = 0;
-                    this.bgImage.setFlipY(true);
-                } else {
-                    this.bgImage.y = -50;
-                    this.bgImage.setFlipY(false);
-                }
-            },
-            callbackScope: this,
-            repeat: -1
-        })
+        // setting BG
+        setBG(this);
 
         // display menu text
         
@@ -37,16 +21,14 @@ class Menu extends Phaser.Scene {
         .on("pointerover", () => {this.startText.setTint(blueHex)})
         .on("pointerout", () => {this.startText.setTint(0xFFFFFF)});
 
+        // looking for grader mode input
+
         this.input.keyboard.createCombo('GRADER');
 
         this.input.keyboard.on("keycombomatch", () => {
             graderMode = true;
             this.add.bitmapText(width/2, height/2 + 100, "handwrittenFont", "GRADER MODE: ON", 36).setOrigin(0.5).setTint(pinkHex).setAngle(2);
         })
-    }
-
-    update() {
-        
     }
 
 }

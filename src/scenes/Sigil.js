@@ -4,21 +4,23 @@ class Sigil extends Phaser.Scene {
     }
 
     init() {
-
+        // 
         this.input.setPollAlways();
-
         this.buttonCooldownTime = 1558;
 
+        // all possible states for each part of the sigil
         this.colorArr = ["black", "red", "violet", "pink", "green", "yellow", "orange", "white"];
         this.travelArr = ["naval", "roads", "horseback", "trains", "aviation", "camels", "turtleback"];
         this.weatherArr = ["normal", "foggy", "hot", "rainy", "stormy", "snow", "windy"];
         this.societyArr = ["tribal", "agricultural", "martial", "metropolitan", "academic", "industrial", "spiritual", "poetic"];
 
+        // tracks index of current state
         this.currColor = 0;
         this.currTravel = 0;
         this.currWeather = 0;
         this.currSociety = 0;
 
+        // all orientations of where motes & rays can be oriented
         this.rayAndMoteLocations = new Map([
             ["naval", {
                 raysOn: [true, true, true, true, true, true, true, true],
@@ -50,6 +52,7 @@ class Sigil extends Phaser.Scene {
             }]
         ]);
 
+        // the correct states for each aspect of sigil
         this.correct = {
             color: "orange",
             travel: "naval",
@@ -60,24 +63,10 @@ class Sigil extends Phaser.Scene {
     }
 
     create() {
-        this.cameras.main.setBackgroundColor(blackHex);
-        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        // setting BG
+        setBG(this);
 
-        this.time.addEvent({
-            delay: 700,
-            callback: () => {
-                if (this.bgImage.y < 0) {
-                    this.bgImage.y = 0;
-                    this.bgImage.setFlipY(true);
-                } else {
-                    this.bgImage.y = -50;
-                    this.bgImage.setFlipY(false);
-                }
-            },
-            callbackScope: this,
-            repeat: -1
-        })
-
+        // brings back to previous scene
         this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -90,12 +79,15 @@ class Sigil extends Phaser.Scene {
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
         .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
 
+        // unchanging sprites
         this.outerCircle = this.add.sprite(width/2, 162, "outerCircle").setOrigin(0.5);
         this.add.sprite(width/2, 25, "colorCircle").setOrigin(0.5, 0);
         this.add.sprite(width/2, 25, "centerSymbol").setOrigin(0.5, 0);
 
+        // changable color ring
         this.colorRing = this.add.sprite(width/2, 63, `${this.colorArr[this.currColor]}-ring`).setOrigin(0.5, 0);
 
+        // adds all rays, rotates around the middle of the sigil
         this.allRays = [];
         for (let i=0;i<8;i++) {
             this.allRays[i] = this.add.sprite(width/2, 84, `${this.weatherArr[this.currWeather]}-ray`).setOrigin(0.5, 0);
@@ -103,6 +95,7 @@ class Sigil extends Phaser.Scene {
             this.allRays[i].setAngle(45*i);
         }
 
+        // adds all motes, rotates around the middle of the sigil
         this.allMotes = [];
         for (let i=0;i<16;i++) {
             this.allMotes[i] = this.add.sprite(width/2, 95, `${this.societyArr[this.currSociety]}-mote`).setOrigin(0.5, 0);
@@ -110,9 +103,10 @@ class Sigil extends Phaser.Scene {
             this.allMotes[i].setAngle(22.5*i);
         }
 
+        // only shows the rays & motes based on current orientation
         this.updateRayAndMoteLocation();  
 
-        // buttons
+        // spinners
         this.colorButton = this.add.image(width/2, 450, "colorSpinner").setOrigin(0.5).setInteractive({
             hitArea: new Phaser.Geom.Circle(119, 119, 119),
             hitAreaCallback: Phaser.Geom.Circle.Contains,
@@ -174,6 +168,7 @@ class Sigil extends Phaser.Scene {
 
         this.buttons = this.add.group([this.colorButton, this.travelButton, this.weatherButton, this.societyButton, this.blueButton]);
 
+        // if grader mode, show correct orientation as clue and skip button
         if (graderMode) {
             this.correctSigil = this.add.image(96, height/2, "correctSigil").setOrigin(0, 0.5);
 
@@ -212,6 +207,7 @@ class Sigil extends Phaser.Scene {
         }
     }
 
+    // sets correct rays and motes to visible, hides others
     updateRayAndMoteLocation() {
         let currRaysOn = this.rayAndMoteLocations.get(this.travelArr[this.currTravel]).raysOn;
         for (let i=0;i<8;i++) {
@@ -224,6 +220,8 @@ class Sigil extends Phaser.Scene {
         }
     }
 
+    // plays anim based on what spinner was clicked
+    // also updates the current pointer to which aspect of sigil is chosen
     updateSigil(button) {
         // turn off all buttons
         this.buttons.children.each( (button)=> {
@@ -347,6 +345,8 @@ class Sigil extends Phaser.Scene {
 
     }
 
+    // checks current sigil to correct answer
+    // plays anim as well
     checkAnswer() {
         // turn off all buttons
         this.buttons.children.each( (button)=> {

@@ -8,24 +8,10 @@ class Letter extends Phaser.Scene {
     }
 
     create() {
-        this.cameras.main.setBackgroundColor(blackHex);
-        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        // setting BG
+        setBG(this);
 
-        this.time.addEvent({
-            delay: 700,
-            callback: () => {
-                if (this.bgImage.y < 0) {
-                    this.bgImage.y = 0;
-                    this.bgImage.setFlipY(true);
-                } else {
-                    this.bgImage.y = -50;
-                    this.bgImage.setFlipY(false);
-                }
-            },
-            callbackScope: this,
-            repeat: -1
-        })
-
+        // adding scene art
         this.add.image(0, 0, "safeWithLetter").setOrigin(0);
 
         // clickable letter

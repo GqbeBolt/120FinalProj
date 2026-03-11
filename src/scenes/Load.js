@@ -29,7 +29,6 @@ class Load extends Phaser.Scene {
         this.load.image("safeWithLetter", "safeWithLetter.png");
         this.load.image("redLetter", "redLetter.png");
 
-        
         // front scene
         this.load.image("frontScene", "frontScene.png");
         this.load.image("frontSceneOpened", "FrontSceneUnlocked.png");
@@ -128,12 +127,6 @@ class Load extends Phaser.Scene {
         this.load.image("lockBrick", "lockBrick.png");
         this.load.image("arrowUp", "arrowUp.png");
         this.load.image("latch", "latch.png");
-
-   
-        // this.load.spritesheet("runner", "runner.png", {
-        //     frameWidth: 30,
-        //     frameHeight: 36
-        // })
 
         // load all sounds
         this.load.path = "./assets/sounds/";

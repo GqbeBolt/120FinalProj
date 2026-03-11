@@ -4,31 +4,19 @@ class Safe extends Phaser.Scene {
     }
 
     init() {
+        // correct answer
         this.correct = ["0", "7", "2", "3"];
 
+        // tracker for current input
         this.currentCode = [];
     }
 
     create() {
 
-        this.cameras.main.setBackgroundColor(blackHex);
-        this.bgImage = this.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+        // setting BG
+        setBG(this);
 
-        this.time.addEvent({
-            delay: 700,
-            callback: () => {
-                if (this.bgImage.y < 0) {
-                    this.bgImage.y = 0;
-                    this.bgImage.setFlipY(true);
-                } else {
-                    this.bgImage.y = -50;
-                    this.bgImage.setFlipY(false);
-                }
-            },
-            callbackScope: this,
-            repeat: -1
-        })
-
+        // brings back to previous scene
         this.backButton = this.add.image(width - 64, height - 64, "backButton").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -41,8 +29,10 @@ class Safe extends Phaser.Scene {
         .on("pointerover", () => {this.backButton.setTint(blueHex)})
         .on("pointerout", () => {this.backButton.setTint(0xFFFFFF)});
 
+        // unchanging keypad sprite
         this.add.image(width/2, height/2, "keypadCircle").setOrigin(0.5);
 
+        // all number buttons
         this.button1 = this.add.image(407, 199, "button1").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -163,6 +153,8 @@ class Safe extends Phaser.Scene {
         .on("pointerover", () => {this.button0.setTint(blueHex)})
         .on("pointerout", () => {this.button0.setTint(0xFFFFFF)});
 
+        // clear and enter buttons
+        // clears the current input
         this.buttonClear = this.add.image(407, 370, "buttonClear").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -175,6 +167,7 @@ class Safe extends Phaser.Scene {
         .on("pointerover", () => {this.buttonClear.setTint(blueHex)})
         .on("pointerout", () => {this.buttonClear.setTint(0xFFFFFF)});
 
+        // checks the current input to correct answer, clears input if wrong
         this.buttonEnter = this.add.image(511, 370, "buttonEnter").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 0, 32, 32),
             hitAreaCallback: Phaser.Geom.Rectangle.Contains,
@@ -192,6 +185,7 @@ class Safe extends Phaser.Scene {
         .on("pointerover", () => {this.buttonEnter.setTint(blueHex)})
         .on("pointerout", () => {this.buttonEnter.setTint(0xFFFFFF)});
 
+        // adds skip button for grader mode
         if (graderMode) {
             this.skipButton = this.add.image(800, height/2, "skipButton").setOrigin(0, 0.5).setInteractive({
                 hitArea: new Phaser.Geom.Rectangle(0, 0, 64, 32),
