@@ -58,7 +58,7 @@ let graderMode = false;
 // background function used for every scene
 function setBG(scene) {
     scene.cameras.main.setBackgroundColor(blackHex);
-    scene.bgImage = scene.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.5);
+    scene.bgImage = scene.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.6);
     scene.time.addEvent({
         delay: 700,
         callback: () => {

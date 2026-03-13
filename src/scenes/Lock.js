@@ -53,7 +53,6 @@ class Lock extends Phaser.Scene {
         this.num3 = this.add.image(496, 380, `button${this.spot3}`).setOrigin(0);
         this.num4 = this.add.image(560, 380, `button${this.spot4}`).setOrigin(0);
 
-
         // arrow buttons
         this.oneUp = this.add.image(368, 336, "arrowUp").setOrigin(0).setInteractive({
             hitArea: new Phaser.Geom.Rectangle(0, 14, 32, 18),
