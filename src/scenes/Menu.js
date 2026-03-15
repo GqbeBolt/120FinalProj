@@ -17,9 +17,12 @@ class Menu extends Phaser.Scene {
         })
         .on("pointerdown", () => {
             this.scene.start("frontScene"); 
+            this.sound.play("uiButtonSFX");
         })
         .on("pointerover", () => {this.startText.setTint(blueHex)})
         .on("pointerout", () => {this.startText.setTint(0xFFFFFF)});
+
+        this.add.bitmapText(width/2, height/2 + 200, "typedFont", "Use Mouse to Interact", 24).setOrigin(0.5).setTint(grayHex);
 
         // looking for grader mode input
 

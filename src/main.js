@@ -1,5 +1,9 @@
 /*
 Name: Gabriel Rybolt
+Title: ...
+Hours: ~45
+Citations: True Modulo: https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
+           Used in Lock.js
 Five Major Components:
     Tween Manager: Used in Sigil.js for the spinners & in other places as well
 
@@ -8,6 +12,12 @@ Five Major Components:
 
     Text Objects: Used for the start screen (for all other text, I found it easier to bake
     into an image so that background works easier). Also used in grader mode hints
+
+    Mouse Interaction: This is used throughout the entire project, mainly as buttons
+    (whether it be an actual button like the UI or clickable objects). The buttons
+    also change color when hovered over
+
+    Particles: Used in letter scene, particles behind the final red letter
     
 
 Creative Tilt: 
@@ -28,14 +38,8 @@ let config = {
         mode: Phaser.Scale.NONE,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    physics: {
-        default: "arcade",
-        arcade: {
-            debug: false
-        }
-    },
     fps: 60,
-    scene: [ Load, Menu, FrontView, RightView, LeftView, BackView, Sigil, Lock, Safe, DisplayImage, Letter ]
+    scene: [ Load, Menu, FrontView, RightView, LeftView, BackView, Sigil, Lock, Safe, DisplayImage, Letter, Credits, FinalMessage ]
 };
 
 let game = new Phaser.Game(config);
@@ -58,7 +62,8 @@ let graderMode = false;
 // background function used for every scene
 function setBG(scene) {
     scene.cameras.main.setBackgroundColor(blackHex);
-    scene.bgImage = scene.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.6);
+    scene.bgImage = scene.add.image(0, 0, "noiseBG").setOrigin(0).setAlpha(0.4);
+    scene.bgImage.setDepth(-10000);
     scene.time.addEvent({
         delay: 700,
         callback: () => {

@@ -24,10 +24,15 @@ class Load extends Phaser.Scene {
         this.load.image("backButton", "backButton.png");
         this.load.image("arrowButton", "arrowButton.png");
         this.load.image("skipButton", "skipButton.png");
+        this.load.image("creditsBG", "creditsBG.png");
 
         // loading letter scene
         this.load.image("safeWithLetter", "safeWithLetter.png");
         this.load.image("redLetter", "redLetter.png");
+        this.load.image("star", "smallStar.png");
+        this.load.image("letterBack", "letterBack.png");
+        this.load.image("lyricLetter", "LyricLetter.png");
+        this.load.image("graderLetter", "GraderLetter.png");
 
         // front scene
         this.load.image("frontScene", "frontScene.png");
@@ -136,7 +141,6 @@ class Load extends Phaser.Scene {
 
         // load all fonts
         this.load.path = "./assets/fonts/";
-        this.load.bitmapFont("pixelFont", "PixeledFont.png", "PixeledFont.xml"); // OmegaPC777 
         this.load.bitmapFont("typedFont", "typewriterFont.png", "typewriterFont.xml");  // GGBotNet
         this.load.bitmapFont("handwrittenFont", "handwritten.png", "handwritten.xml");  // Shaped Fonts
     }
